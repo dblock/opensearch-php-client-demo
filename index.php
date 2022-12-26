@@ -17,7 +17,7 @@ $info = $client->info();
 
 echo "{$info['version']['distribution']}: {$info['version']['number']}\n";
 
-$indexName = "test-index";
+$indexName = "movies";
 
 // create an index 
 $client->indices()->create(['index' => $indexName]);

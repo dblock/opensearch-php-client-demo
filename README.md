@@ -44,7 +44,7 @@ This will output the version of OpenSearch and a search result.
 opensearch: 2.3.0
 Array
 (
-    [_index] => test-index
+    [_index] => movies
     [_id] => 1
     [_score] => 0.2876821
     [_source] => Array
