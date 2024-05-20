@@ -9,10 +9,11 @@
     }
   ],
   "scripts": {
-    "demo": ["php index.php"]
+    "demo": ["php index.php"],
+    "demo:json": ["php json.php"]
   },
   "require": {
     "aws/aws-sdk-php": "3.*",
-    "opensearch-project/opensearch-php": "^2.0"
+    "opensearch-project/opensearch-php": "^2.3.0"
   }
 }

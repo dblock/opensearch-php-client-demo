@@ -59,6 +59,8 @@ Array
 
 The [code](index.php) will create an index, add a document to it, search, then cleanup.
 
+Use `composer run demo:json` to run the [raw JSON sample](json.php). 
+
 ## License 
 
 This project is licensed under the [Apache v2.0 License](LICENSE.txt).
