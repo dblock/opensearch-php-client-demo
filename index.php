@@ -7,20 +7,27 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+// setup
+$service = getenv("SERVICE") ?: 'es';
+
 $client = (new \OpenSearch\ClientBuilder())
-  ->setHosts([getenv("ENDPOINT")])
-  ->setSigV4Region(getenv("AWS_REGION"))    
-  ->setSigV4CredentialProvider(true)
-  ->build();
+    ->setHosts([getenv("ENDPOINT")])
+    ->setSigV4Service($service)
+    ->setSigV4Region(getenv("AWS_REGION"))
+    ->setSigV4CredentialProvider(true)
+    ->build();
 
-$info = $client->info();
-
-echo "{$info['version']['distribution']}: {$info['version']['number']}\n";
+if ($service != 'aoss') {
+    $info = $client->info();
+    echo "{$info['version']['distribution']}: {$info['version']['number']}\n";
+}
 
 $indexName = "movies";
 
 // create an index 
-$client->indices()->create(['index' => $indexName]);
+if (!$client->indices()->exists(['index' => $indexName])) {
+    $client->indices()->create(['index' => $indexName]);
+}
 
 // create a document
 $client->create([
@@ -48,10 +55,12 @@ $result = $client->search([
     ]
 ]);
 
-print_r($result['hits']['hits'][0], false);
+if ($result['hits']['total']['value'] != 0) {
+    print_r($result['hits']['hits'][0]);
+}
 
 // delete a single document
-$client->delete(['index' => $indexName,'id' => 1]);
+$client->delete(['index' => $indexName, 'id' => 1]);
 // delete index
 $client->indices()->delete(['index' => $indexName]);
 
