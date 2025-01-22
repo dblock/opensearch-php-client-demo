@@ -60,7 +60,7 @@ Array
 
 The [code](index.php) will create an index, add a document to it, search, then cleanup.
 
-Use `composer run demo:symfony` to exercise [index-symfony.php](index-symfony.php) and `composer run demo:guzzle` to exercise [index-guzzle.php](index-guzzle.php). Use `composer run demo:json` to run the [raw JSON sample](json.php). 
+Use `composer run demo:symfony` to exercise [index-symfony.php](index-symfony.php), `composer run demo:guzzle` to exercise [index-guzzle.php](index-guzzle.php), `composer run demo:json` to run the [raw JSON sample](json.php), and `composer run demo:local` for [index-local.php](index-local.php).
 
 ## Next Version
 

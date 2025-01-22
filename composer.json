@@ -12,7 +12,8 @@
     "demo:guzzle": ["php index-guzzle.php"],
     "demo:symfony": ["php index-symfony.php"],
     "demo": ["php index.php"],
-    "demo:json": ["php json.php"]
+    "demo:json": ["php json.php"],
+    "demo:local": ["php index-local.php"]
   },
   "require": {
     "aws/aws-sdk-php": "^3.336",
