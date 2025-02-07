@@ -8,10 +8,11 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 $client = (new \OpenSearch\ClientBuilder())
-  ->setHosts([getenv("ENDPOINT")])
-  ->setSigV4Region(getenv("AWS_REGION"))    
-  ->setSigV4CredentialProvider(true)
-  ->build();
+    ->setSigV4Service(getenv("SERVICE") ?: 'es')
+    ->setHosts([getenv("ENDPOINT")])
+    ->setSigV4Region(getenv("AWS_REGION"))
+    ->setSigV4CredentialProvider(true)
+    ->build();
 
 $info = $client->request('GET', '/');
 

@@ -9,11 +9,23 @@
     }
   ],
   "scripts": {
+    "demo:guzzle": ["php index-guzzle.php"],
+    "demo:symfony": ["php index-symfony.php"],
     "demo": ["php index.php"],
-    "demo:json": ["php json.php"]
+    "demo:json": ["php json.php"],
+    "demo:local": ["php index-local.php"]
   },
   "require": {
-    "aws/aws-sdk-php": "3.*",
-    "opensearch-project/opensearch-php": "^2.3.0"
+    "aws/aws-sdk-php": "^3.336",
+    "opensearch-project/opensearch-php": "^2.4.0",
+    "symfony/http-client": "^7.2",
+    "php-http/discovery": "^1.20",
+    "psr/http-factory-implementation": "*",
+    "guzzlehttp/guzzle": "^7.9.2"
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
   }
 }

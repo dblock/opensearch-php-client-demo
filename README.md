@@ -33,6 +33,7 @@ export AWS_SESSION_TOKEN=
 export AWS_REGION=us-west2
 
 export ENDPOINT=https://....us-west-2.es.amazonaws.com
+export SERVICE=es # use aoss for OpenSearch Serverless
 
 $ composer install
 $ composer run demo
@@ -59,7 +60,21 @@ Array
 
 The [code](index.php) will create an index, add a document to it, search, then cleanup.
 
-Use `composer run demo:json` to run the [raw JSON sample](json.php). 
+Use `composer run demo:symfony` to exercise [index-symfony.php](index-symfony.php), `composer run demo:guzzle` to exercise [index-guzzle.php](index-guzzle.php), `composer run demo:json` to run the [raw JSON sample](json.php), and `composer run demo:local` for [index-local.php](index-local.php).
+
+## Next Version
+
+To test the next version of the client use this in [composer.json](composer.json).
+
+```json
+  "require": {
+    "opensearch-project/opensearch-php": "dev-main",
+  },
+  "repositories": [{
+    "url": "https://github.com/opensearch-project/opensearch-php",
+    "type": "git"
+  }]
+```
 
 ## License 
 

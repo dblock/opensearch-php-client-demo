@@ -8,19 +8,17 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 // setup
-$service = getenv("SERVICE") ?: 'es';
-
 $client = (new \OpenSearch\ClientBuilder())
-    ->setHosts([getenv("ENDPOINT")])
-    ->setSigV4Service($service)
-    ->setSigV4Region(getenv("AWS_REGION"))
-    ->setSigV4CredentialProvider(true)
+    ->setHosts([getenv("ENDPOINT") ?: 'https://localhost:9200'])
+    ->setSSLVerification(false)
+    ->setBasicAuthentication(
+        getenv("OPENSEARCH_USERNAME") ?: 'admin',
+        getenv("OPENSEARCH_PASSWORD") ?: 'admin'
+    )
     ->build();
 
-if ($service != 'aoss') {
-    $info = $client->info();
-    echo "{$info['version']['distribution']}: {$info['version']['number']}\n";
-}
+$info = $client->info();
+echo "{$info['version']['distribution']}: {$info['version']['number']}\n";
 
 $indexName = "movies";
 
@@ -32,15 +30,14 @@ if (!$client->indices()->exists(['index' => $indexName])) {
 // create a document
 $client->create([
     'index' => $indexName,
+    'refresh' => True,
     'id' => 1,
     'body' => [
         'title' => 'Moneyball',
         'director' => 'Bennett Miller',
         'year' => 2011
-    ]
+    ],
 ]);
-
-sleep(1);
 
 // search for the doc
 $result = $client->search([
