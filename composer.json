@@ -17,16 +17,12 @@
   },
   "require": {
     "aws/aws-sdk-php": "^3.336",
-    "opensearch-project/opensearch-php": "dev-main",
+    "opensearch-project/opensearch-php": "^2.4.0",
     "symfony/http-client": "^7.2",
     "php-http/discovery": "^1.20",
     "psr/http-factory-implementation": "*",
-    "guzzle/guzzle": "^3.9"
+    "guzzlehttp/guzzle": "^7.9.2"
   },
-  "repositories": [{
-    "url": "https://github.com/opensearch-project/opensearch-php",
-    "type": "git"
-  }],
   "config": {
     "allow-plugins": {
       "php-http/discovery": true
